@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+set -o pipefail
+
+#
+# Install Arch dependencies
+# The dependencies of one level would also be needed for the next ones
+#
+
+# cross-compiler
+pacman -S gcc texinfo python2 || exit 10
+
+# barebones
+pacman -S bc pixman lib32-pixman || exit 11
+
+# rootfs
+pacman -S cdrkit || exit 12
+
+pacman -S cpio
+
+# usersfs
+pacman -S autoconf automake || exit 13
+
+# qemu
+pacman -S sdl
